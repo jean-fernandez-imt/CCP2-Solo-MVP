@@ -4,11 +4,11 @@ const path = require('path');
 const app = express();
 
 // Serve static assets
-app.use(express.static(path.resolve(__dirname, "..", "dist", "ng-blog")));
+app.use(express.static(path.resolve(__dirname, "..", "dist", "CCP2-Solo-MVP")));
 
 // Always return the main index.html, since we are developing a single page application
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "..", "dist", "ng-blog", "index.html"));
+  res.sendFile(path.resolve(__dirname, "..", "dist", "CCP2-Solo-MVP", "index.html"));
 });
 
 (() => {
