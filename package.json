@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node ./AngularServer/server.js",
-    "postinstall": "ng build --prod",
+    "postinstall": "ng build",
     "hack:start": "ng serve",
     "hack:build": "ng build",
     "hack:watch": "ng build --watch --configuration development",
