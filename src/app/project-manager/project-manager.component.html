@@ -1,0 +1,15 @@
+<h2>Project Manager!</h2>
+
+<mat-toolbar color="primary">
+  <span>Projects</span>
+  <span class="spacer"></span>
+  <button mat-fab color="accent" (click)="openDialog()">
+    <mat-icon class="icon" aria-hidden="false" aria-label="Create Project Icon">create_new_folder</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div *ngIf="projects.length > 0">
+  <div *ngFor="let project of projects">
+    <p>{{project.name}}</p>
+  </div>
+</div>
