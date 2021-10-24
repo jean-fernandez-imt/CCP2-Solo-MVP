@@ -62,7 +62,7 @@ app.post(`/project`, async (req, res) => {
 });
 
 // Delete a project
-app.post(`/project/:id`, async (req, res) => {
+app.delete(`/project/:id`, async (req, res) => {
   const { id } = req.params;
 
   const result = await prisma.project.delete({
@@ -76,8 +76,13 @@ app.post(`/project/:id`, async (req, res) => {
 
 (() => {
   try {
-    app.listen(process.env.PORT || 8080, () =>
-      console.log(`App listening on port ${process.env.PORT}!`)
+    app.listen(process.env.PORT || 8080, () => {
+      if (process.env.PORT) {
+        console.log(`App listening on port ${process.env.PORT}!`);
+      } else {
+        console.log(`Server running on http://localhost:8080`);
+      }
+    }
     );
   } catch (err) {
     console.error("Error starting app!", err);

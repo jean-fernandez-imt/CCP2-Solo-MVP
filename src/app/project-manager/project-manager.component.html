@@ -6,6 +6,9 @@
   <button mat-fab color="accent" (click)="openDialog()">
     <mat-icon class="icon" aria-hidden="false" aria-label="Create Project Icon">create_new_folder</mat-icon>
   </button>
+  <button mat-fab color="accent" (click)="getProjects()">
+    <mat-icon class="icon" aria-hidden="false" aria-label="Create Project Icon">new_folder</mat-icon>
+  </button>
 </mat-toolbar>
 
 <div *ngIf="projects.length > 0">

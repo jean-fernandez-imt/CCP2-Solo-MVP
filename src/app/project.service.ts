@@ -33,7 +33,7 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  /** GET projects from the server */
+  /** GET all projects from the server */
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>("api/projects")
       .pipe(
@@ -41,12 +41,20 @@ export class ProjectService {
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** GET project by id. Will 404 if id not found */
   getProject(id: string): Observable<Project> {
     const url = `api/project/${id}`;
 
     return this.http.get<Project>(url).pipe(
       catchError(this.handleError<Project>(`getProject id=${id}`))
     );
+  }
+
+  /** POST: add a new project to the server */
+  createProject(project: Project): Observable<Project> {
+    return this.http.post<Project>("api/project", project, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Project>('createProject'))
+      );
   }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
 
 import { Project } from '../project';
 import { NewProjectDialogComponent } from '../new-project-dialog/new-project-dialog.component';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-project-manager',
@@ -12,9 +14,13 @@ import { NewProjectDialogComponent } from '../new-project-dialog/new-project-dia
 export class ProjectManagerComponent implements OnInit {
   projects: Project[] = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private projectService: ProjectService
+  ) { }
 
   ngOnInit(): void {
+    this.getProjects();
   }
 
   openDialog(): void {
@@ -23,13 +29,23 @@ export class ProjectManagerComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      const newProject: Project = {
-        id: this.projects.length + 1,
-        name: result,
-        items: []
-      };
-
-      this.projects.push(newProject);
+      if(result) {
+        this.createProject(result);
+      }
     });
+  }
+
+  getProjects(): void {
+    this.projectService.getProjects()
+      .subscribe(projects => this.projects = projects);
+  }
+
+  createProject(name: string): void {
+    name = name.trim();
+    if (!name) { return; }
+    this.projectService.createProject({ name } as Project)
+      .subscribe(project => {
+        this.projects.push(project);
+      });
   }
 }
