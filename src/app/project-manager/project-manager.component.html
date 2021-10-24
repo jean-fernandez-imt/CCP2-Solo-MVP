@@ -10,6 +10,18 @@
 
 <div *ngIf="projects.length > 0">
   <div *ngFor="let project of projects">
-    <p>{{project.name}}</p>
+    <mat-card>
+      <mat-card-title>
+        <span class="badge">{{projects.indexOf(project) + 1}}</span> {{project.name}}
+      </mat-card-title>
+      <mat-card-actions align="end">
+        <a mat-raised-button color="primary" routerLink="/project/{{project.id}}">
+          <mat-icon class="icon" aria-hidden="false" aria-label="Open Project Icon">open_with</mat-icon>
+        </a>
+        <button mat-raised-button color="warn">
+          <mat-icon class="icon" aria-hidden="false" aria-label="Delete Project Icon">delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
