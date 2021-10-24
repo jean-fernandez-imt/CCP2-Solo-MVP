@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { Project } from '../project';
-import { Item } from '../item';
+import { ProjectService } from '../project.service';
 
 @Component({
   selector: 'app-project-view',
@@ -9,16 +12,19 @@ import { Item } from '../item';
   styleUrls: ['./project-view.component.css']
 })
 export class ProjectViewComponent implements OnInit {
-  selectedProject?: Project;
+  @Input() selectedProject?: Project;
 
-  items: Item[] = [];
-
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private projectService: ProjectService,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
-    if (this.selectedProject) {
-      this.items = this.selectedProject.items;
-    }
+    this.getProject();
   }
 
+  getProject(): void {
+    
+  }
 }
