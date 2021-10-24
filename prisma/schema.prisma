@@ -21,7 +21,8 @@ model Item {
   name              String                @db.VarChar(255)
   manufacturer      String?               @db.VarChar(255)
   provider          String?               @db.VarChar(255)
-  price             Float
+  price             Int
+  description       String?               @db.VarChar(255)
   project           Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId         String
 }

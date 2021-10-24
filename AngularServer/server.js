@@ -74,6 +74,67 @@ app.delete(`/api/project/:id`, async (req, res) => {
   res.json(result);
 });
 
+/* Items CRUD Operations */
+// Create a new item in a project
+app.post("/api/item", async (req, res) => {
+  const { name, manufacturer, provider, price, description, projectId } = req.body;
+
+  const result = await prisma.item.create({
+    data: {
+      name: name,
+      manufacturer: manufacturer,
+      provider: provider,
+      price: price,
+      description: description,
+      project: {
+        connect: {
+          id: projectId,
+        }
+      }
+    }
+  });
+
+  res.json(result);
+});
+
+// Update an item in a project
+app.put('/api/item/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, manufacturer, provider, price, description } = req.body;
+
+  try {
+    const updatedItem = await prisma.item.update({
+      where: { 
+        id: id, 
+      },
+      data: {
+        name: name,
+        manufacturer: manufacturer,
+        provider: provider,
+        price: price,
+        description: description
+      },
+    });
+
+    res.json(updatedItem);
+  } catch (error) {
+    res.json({ error: `Item with ID ${id} could not be updated.` });
+  }
+});
+
+// Delete an item from a project
+app.delete(`/api/item/:id`, async (req, res) => {
+  const { id } = req.params;
+
+  const result = await prisma.item.delete({
+    where: {
+      id: id,
+    }
+  });
+
+  res.json(result);
+});
+
 (() => {
   try {
     app.listen(process.env.PORT || 8080, () => {

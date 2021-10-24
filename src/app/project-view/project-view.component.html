@@ -3,12 +3,18 @@
 <mat-toolbar color="primary">
   <span>{{project.name}}</span>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="Add Item" (click)="goBack()">
+  <button mat-icon-button aria-label="Add Item" (click)="openDialog()">
     <mat-icon>add_box</mat-icon>
   </button>
   <button mat-icon-button aria-label="Go Back" (click)="goBack()">
     <mat-icon>backspace</mat-icon>
   </button>
 </mat-toolbar>
+
+<div *ngIf="project.items.length > 0">
+  <div *ngFor="let item of project.items">
+    <p>{{item.name}}</p>
+  </div>
+</div>
 
 
