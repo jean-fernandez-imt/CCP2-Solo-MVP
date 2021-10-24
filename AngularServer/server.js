@@ -25,7 +25,7 @@ app.get("/api", (req, res) => {
 app.get("/api/projects", async (req, res) => {
   const result = await prisma.project.findMany({
     include: {
-      Items: true,
+      items: true,
     }
   });
 
@@ -38,10 +38,10 @@ app.get("/api/project/:id", async (req, res) => {
 
   const result = await prisma.project.findUnique({
     where: {
-      Id: id,
+      id: id,
     },
     include: {
-      Items: true,
+      items: true,
     }
   });
 
@@ -49,12 +49,12 @@ app.get("/api/project/:id", async (req, res) => {
 });
 
 // Create a new project
-app.post(`/project`, async (req, res) => {
+app.post("/api/project", async (req, res) => {
   const { name } = req.body;
 
   const result = await prisma.project.create({
     data: {
-      Name: name,
+      name: name,
     }
   });
 
@@ -62,12 +62,12 @@ app.post(`/project`, async (req, res) => {
 });
 
 // Delete a project
-app.delete(`/project/:id`, async (req, res) => {
+app.delete(`/api/project/:id`, async (req, res) => {
   const { id } = req.params;
 
   const result = await prisma.project.delete({
     where: {
-      Id: id,
+      id: id,
     }
   });
 

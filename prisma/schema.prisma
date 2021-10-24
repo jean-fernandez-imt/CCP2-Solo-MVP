@@ -11,17 +11,17 @@ datasource db {
 }
 
 model Project {
-  Id                String                 @id @default(uuid())
-  Name              String                 @db.VarChar(255)
-  Items             Item[] 
+  id                String                 @id @default(uuid())
+  name              String                 @db.VarChar(255)
+  items             Item[] 
 }
 
 model Item {
-  Id                String                @id @default(uuid())
-  Name              String                @db.VarChar(255)
-  Manufacturer      String?               @db.VarChar(255)
-  Provider          String?               @db.VarChar(255)
-  Price             Float
-  Project           Project               @relation(fields: [ProjectId], references: [Id], onDelete: Cascade)
-  ProjectId         String
+  id                String                @id @default(uuid())
+  name              String                @db.VarChar(255)
+  manufacturer      String?               @db.VarChar(255)
+  provider          String?               @db.VarChar(255)
+  price             Float
+  project           Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId         String
 }
