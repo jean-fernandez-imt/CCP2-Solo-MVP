@@ -12,7 +12,11 @@ import { ProjectService } from '../project.service';
   styleUrls: ['./project-view.component.css']
 })
 export class ProjectViewComponent implements OnInit {
-  @Input() selectedProject?: Project;
+  @Input() project: Project = {
+    id: "",
+    name: "",
+    items: []
+  };
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +29,12 @@ export class ProjectViewComponent implements OnInit {
   }
 
   getProject(): void {
-    
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.projectService.getProject(id)
+      .subscribe(project => this.project = project);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

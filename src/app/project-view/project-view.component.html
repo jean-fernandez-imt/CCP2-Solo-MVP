@@ -1,2 +1,14 @@
-<p>project-view works!</p>
-<p>{{selectedProject}}</p>
+<h2>Project View!</h2>
+
+<mat-toolbar color="primary">
+  <span>{{project.name}}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="Add Item" (click)="goBack()">
+    <mat-icon>add_box</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Go Back" (click)="goBack()">
+    <mat-icon>backspace</mat-icon>
+  </button>
+</mat-toolbar>
+
+

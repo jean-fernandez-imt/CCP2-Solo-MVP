@@ -1,7 +1,7 @@
 import { Item } from './item';
 
 export interface Project {
-  id: number;
+  id: string;
   name: string;
   items: Item[];
 }

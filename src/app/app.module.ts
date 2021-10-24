@@ -18,6 +18,7 @@ import { ProjectViewComponent } from './project-view/project-view.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewProjectDialogComponent } from './new-project-dialog/new-project-dialog.component';
+import { NewComponentDialogComponent } from './new-component-dialog/new-component-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NewProjectDialogComponent } from './new-project-dialog/new-project-dial
     ProjectManagerComponent,
     ProjectViewComponent,
     PageNotFoundComponent,
-    NewProjectDialogComponent
+    NewProjectDialogComponent,
+    NewComponentDialogComponent
   ],
   imports: [
     BrowserModule,

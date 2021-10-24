@@ -57,4 +57,13 @@ export class ProjectService {
         catchError(this.handleError<Project>('createProject'))
       );
   }
+
+  /** DELETE: delete a project from the server */
+  deleteProject(id: string): Observable<Project> {
+    const url = `api/project/${id}`;
+  
+    return this.http.delete<Project>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Project>('deleteProject'))
+    );
+  }
 }
