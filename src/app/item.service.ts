@@ -41,7 +41,7 @@ export class ItemService {
       );
   }
 
-  /** PUT: update the hero on the server */
+  /** PUT: update a project item on the server */
   updateItem(item: Item): Observable<any> {
     return this.http.put(`api/item/${item.id}`, item, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateItem'))

@@ -58,6 +58,13 @@ export class ProjectService {
       );
   }
 
+  /** PUT: update a project on the server */
+  updateProject(project: Project): Observable<any> {
+    return this.http.put(`api/project/${project.id}`, project, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateProject'))
+    );
+  }
+
   /** DELETE: delete a project from the server */
   deleteProject(id: string): Observable<Project> {
     const url = `api/project/${id}`;

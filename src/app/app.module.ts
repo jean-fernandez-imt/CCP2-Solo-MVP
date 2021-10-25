@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewProjectDialogComponent } from './new-project-dialog/new-project-dialog.component';
 import { NewComponentDialogComponent } from './new-component-dialog/new-component-dialog.component';
 import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
+import { EditProjectDialogComponent } from './edit-project-dialog/edit-project-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.com
     PageNotFoundComponent,
     NewProjectDialogComponent,
     NewComponentDialogComponent,
-    EditItemDialogComponent
+    EditItemDialogComponent,
+    EditProjectDialogComponent
   ],
   imports: [
     BrowserModule,

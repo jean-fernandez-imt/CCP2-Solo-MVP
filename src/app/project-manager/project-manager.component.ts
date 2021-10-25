@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Project } from '../project';
 import { NewProjectDialogComponent } from '../new-project-dialog/new-project-dialog.component';
+import { EditProjectDialogComponent } from '../edit-project-dialog/edit-project-dialog.component';
 import { ProjectService } from '../project.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class ProjectManagerComponent implements OnInit {
     this.getProjects();
   }
 
-  openDialog(): void {
+  openNewProjectDialog(): void {
     const dialogRef = this.dialog.open(NewProjectDialogComponent, {
       width: '250px'
     });
@@ -31,6 +32,23 @@ export class ProjectManagerComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.createProject(result);
+      }
+    });
+  }
+
+  openEditProjectDialog(project: Project): void {
+    const dialogRef = this.dialog.open(EditProjectDialogComponent, {
+      width: '250px',
+      data: {
+        id: project.id,
+        name: project.name,
+        items: project.items
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.editProject(result);
       }
     });
   }
@@ -47,6 +65,15 @@ export class ProjectManagerComponent implements OnInit {
       .subscribe(project => {
         this.projects.push(project);
       });
+  }
+
+  editProject(project: Project): void {
+    if (project) {
+      const target = this.projects.filter(p => p.id === project.id);
+      const index = this.projects.indexOf(target[0]);
+      this.projects[index].name = project.name;
+      this.projectService.updateProject(project).subscribe();
+    }
   }
 
   deleteProject(project: Project): void {

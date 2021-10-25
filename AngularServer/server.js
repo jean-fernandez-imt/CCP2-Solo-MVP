@@ -61,6 +61,27 @@ app.post("/api/project", async (req, res) => {
   res.json(result);
 });
 
+// Update a project
+app.put('/api/project/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  try {
+    const updatedProject = await prisma.project.update({
+      where: { 
+        id: id, 
+      },
+      data: {
+        name: name
+      },
+    });
+
+    res.json(updatedProject);
+  } catch (error) {
+    res.json({ error: `Project with ID ${id} could not be updated.` });
+  }
+});
+
 // Delete a project
 app.delete(`/api/project/:id`, async (req, res) => {
   const { id } = req.params;
