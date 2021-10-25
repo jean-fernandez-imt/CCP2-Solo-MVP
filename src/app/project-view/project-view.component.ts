@@ -9,6 +9,7 @@ import { Project } from '../project';
 import { Item } from '../item';
 import { ItemDialogData } from '../itemDialogData';
 import { NewComponentDialogComponent } from '../new-component-dialog/new-component-dialog.component';
+import { EditItemDialogComponent } from '../edit-item-dialog/edit-item-dialog.component';
 import { ProjectService } from '../project.service';
 import { ItemService } from '../item.service';
 
@@ -42,7 +43,7 @@ export class ProjectViewComponent implements OnInit {
       .subscribe(project => this.project = project);
   }
 
-  openDialog(): void {
+  openNewItemDialog(): void {
     const dialogRef = this.dialog.open(NewComponentDialogComponent, {
       width: '250px'
     });
@@ -50,6 +51,26 @@ export class ProjectViewComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.addItem(result);
+      }
+    });
+  }
+
+  openEditItemDialog(item: Item): void {
+    const dialogRef = this.dialog.open(EditItemDialogComponent, {
+      width: '250px',
+      data: {
+        id: item.id,
+        name: item.name, 
+        manufacturer: item.manufacturer,
+        provider: item.provider,
+        price: item.price,
+        description: item.description
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.editItem(result);
       }
     });
   }
@@ -65,5 +86,19 @@ export class ProjectViewComponent implements OnInit {
       .subscribe(item => {
         this.project.items.push(item);
       });
+  }
+
+  editItem(item: Item): void {
+    if (item) {
+      const target = this.project.items.filter(i => i.id === item.id);
+      const index = this.project.items.indexOf(target[0]);
+      this.project.items[index] = item;
+      this.itemService.updateItem(item).subscribe();
+    }
+  }
+
+  deleteItem(item: Item): void {
+    this.project.items = this.project.items.filter(i => i !== item);
+    this.itemService.deleteItem(item.id).subscribe();
   }
 }

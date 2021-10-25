@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewProjectDialogComponent } from './new-project-dialog/new-project-dialog.component';
 import { NewComponentDialogComponent } from './new-component-dialog/new-component-dialog.component';
+import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { NewComponentDialogComponent } from './new-component-dialog/new-componen
     ProjectViewComponent,
     PageNotFoundComponent,
     NewProjectDialogComponent,
-    NewComponentDialogComponent
+    NewComponentDialogComponent,
+    EditItemDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { NewComponentDialogComponent } from './new-component-dialog/new-componen
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    DragDropModule
+    DragDropModule,
+    MatTabsModule
   ],
   entryComponents: [
     NewProjectDialogComponent

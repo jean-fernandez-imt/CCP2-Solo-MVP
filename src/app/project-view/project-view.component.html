@@ -1,9 +1,7 @@
-<h2>Project View!</h2>
-
 <mat-toolbar color="primary">
   <span>{{project.name}}</span>
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="Add Item" (click)="openDialog()">
+  <button mat-icon-button aria-label="Add Item" (click)="openNewItemDialog()">
     <mat-icon>add_box</mat-icon>
   </button>
   <button mat-icon-button aria-label="Go Back" (click)="goBack()">
@@ -12,9 +10,9 @@
 </mat-toolbar>
 
 <div *ngIf="project.items.length > 0">
-  <div class="item-boundary">
-    <div *ngFor="let item of project.items" cdkDragBoundary=".item-boundary" class="item-box" cdkDrag>
-      <mat-card class="item-card">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Components">
+      <mat-card *ngFor="let item of project.items" class="item-card" cdkDrag>
         <mat-card-title>{{item.name}}</mat-card-title>
         <mat-card-content>
           <ul>
@@ -25,16 +23,19 @@
           </ul>  
         </mat-card-content>
         <mat-card-actions align="end">
-          <button mat-raised-button color="primary" aria-label="Edit Item">
+          <button mat-raised-button color="primary" aria-label="Edit Item" (click)="openEditItemDialog(item)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-raised-button color="warn" aria-label="Delete Item">
+          <button mat-raised-button color="warn" aria-label="Delete Item" (click)="deleteItem(item)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
-      </div>
-  </div>
+    </mat-tab>
+    <mat-tab label="Budget">
+
+    </mat-tab>
+  </mat-tab-group>
 </div>
 
 

@@ -37,7 +37,23 @@ export class ItemService {
   addItem(item: Item, projectId: string): Observable<Item> {
     return this.http.post<Item>("api/item", {...item, projectId}, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Item>('createProject'))
+        catchError(this.handleError<Item>('addItem'))
       );
+  }
+
+  /** PUT: update the hero on the server */
+  updateItem(item: Item): Observable<any> {
+    return this.http.put(`api/item/${item.id}`, item, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateItem'))
+    );
+  }
+
+  /** DELETE: delete a project item from the server */
+  deleteItem(id: string): Observable<Item> {
+    const url = `api/item/${id}`;
+  
+    return this.http.delete<Item>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Item>('deleteItem'))
+    );
   }
 }

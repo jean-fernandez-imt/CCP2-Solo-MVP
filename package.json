@@ -5,10 +5,11 @@
     "ng": "ng",
     "start": "node ./AngularServer/server.js",
     "postinstall": "ng build",
-    "hack:start": "ng serve",
+    "hack:start": "ng serve --proxy-config proxy.config.json",
     "hack:build": "ng build",
     "hack:watch": "ng build --watch --configuration development",
     "hack:test": "ng test",
+    "hack:api": "nodemon ./AngularServer/server.js",
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",
     "reset": "npx prisma migrate reset --skip-seed"
