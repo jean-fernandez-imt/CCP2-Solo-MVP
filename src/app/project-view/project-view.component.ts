@@ -25,6 +25,8 @@ export class ProjectViewComponent implements OnInit {
     items: []
   };
 
+  itemsTotalPrice: number = 0;
+
   constructor(
     public dialog: MatDialog,
     private route: ActivatedRoute,
@@ -40,7 +42,17 @@ export class ProjectViewComponent implements OnInit {
   getProject(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.projectService.getProject(id)
-      .subscribe(project => this.project = project);
+      .subscribe(project => {
+        this.project = project;
+        this.calculateTotalPrice();
+      });
+  }
+
+  calculateTotalPrice(): void {
+    this.itemsTotalPrice = 0;
+    for (const item of this.project.items) {
+      this.itemsTotalPrice = this.itemsTotalPrice + item.price;
+    }
   }
 
   openNewItemDialog(): void {
@@ -85,6 +97,7 @@ export class ProjectViewComponent implements OnInit {
     this.itemService.addItem({ ...item } as Item, this.project.id)
       .subscribe(item => {
         this.project.items.push(item);
+        this.calculateTotalPrice();
       });
   }
 
@@ -93,12 +106,14 @@ export class ProjectViewComponent implements OnInit {
       const target = this.project.items.filter(i => i.id === item.id);
       const index = this.project.items.indexOf(target[0]);
       this.project.items[index] = item;
+      this.calculateTotalPrice();
       this.itemService.updateItem(item).subscribe();
     }
   }
 
   deleteItem(item: Item): void {
     this.project.items = this.project.items.filter(i => i !== item);
+    this.calculateTotalPrice();
     this.itemService.deleteItem(item.id).subscribe();
   }
 }

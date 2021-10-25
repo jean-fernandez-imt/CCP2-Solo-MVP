@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +48,8 @@ import { EditItemDialogComponent } from './edit-item-dialog/edit-item-dialog.com
     MatInputModule,
     MatCardModule,
     DragDropModule,
-    MatTabsModule
+    MatTabsModule,
+    MatGridListModule
   ],
   entryComponents: [
     NewProjectDialogComponent
