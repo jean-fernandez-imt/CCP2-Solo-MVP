@@ -24,6 +24,7 @@ export class ProjectViewComponent implements OnInit {
     items: []
   };
 
+  itemsCount: number = 0;
   itemsTotalPrice: number = 0;
 
   constructor(
@@ -43,12 +44,14 @@ export class ProjectViewComponent implements OnInit {
     this.projectService.getProject(id)
       .subscribe(project => {
         this.project = project;
-        this.calculateTotalPrice();
+        this.calculateItemsProperties();
       });
   }
 
-  calculateTotalPrice(): void {
+  calculateItemsProperties(): void {
+    this.itemsCount = this.project.items.length;
     this.itemsTotalPrice = 0;
+
     for (const item of this.project.items) {
       this.itemsTotalPrice = this.itemsTotalPrice + item.price;
     }
@@ -96,7 +99,7 @@ export class ProjectViewComponent implements OnInit {
     this.itemService.addItem(item, this.project.id)
       .subscribe(item => {
         this.project.items.push(item);
-        this.calculateTotalPrice();
+        this.calculateItemsProperties();
       });
   }
 
@@ -105,14 +108,14 @@ export class ProjectViewComponent implements OnInit {
       const target = this.project.items.filter(i => i.id === item.id);
       const index = this.project.items.indexOf(target[0]);
       this.project.items[index] = item;
-      this.calculateTotalPrice();
+      this.calculateItemsProperties();
       this.itemService.updateItem(item).subscribe();
     }
   }
 
   deleteItem(item: Item): void {
     this.project.items = this.project.items.filter(i => i !== item);
-    this.calculateTotalPrice();
+    this.calculateItemsProperties();
     this.itemService.deleteItem(item.id).subscribe();
   }
 }
