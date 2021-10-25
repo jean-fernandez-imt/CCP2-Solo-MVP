@@ -7,7 +7,6 @@ import { Location } from '@angular/common';
 
 import { Project } from '../project';
 import { Item } from '../item';
-import { ItemDialogData } from '../itemDialogData';
 import { NewComponentDialogComponent } from '../new-component-dialog/new-component-dialog.component';
 import { EditItemDialogComponent } from '../edit-item-dialog/edit-item-dialog.component';
 import { ProjectService } from '../project.service';
@@ -91,10 +90,10 @@ export class ProjectViewComponent implements OnInit {
     this.location.back();
   }
 
-  addItem(item: ItemDialogData): void {
+  addItem(item: Item): void {
     if (item.name === "" || item.price <= 0) { return; }
 
-    this.itemService.addItem({ ...item } as Item, this.project.id)
+    this.itemService.addItem(item, this.project.id)
       .subscribe(item => {
         this.project.items.push(item);
         this.calculateTotalPrice();

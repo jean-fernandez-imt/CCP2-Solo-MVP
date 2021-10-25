@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { ItemDialogData } from '../itemDialogData';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-new-component-dialog',
@@ -9,7 +9,8 @@ import { ItemDialogData } from '../itemDialogData';
   styleUrls: ['./new-component-dialog.component.css']
 })
 export class NewComponentDialogComponent implements OnInit {
-  item: ItemDialogData = {
+  item: Item = {
+    id: "",
     name: "",
     manufacturer: "",
     provider: "",
