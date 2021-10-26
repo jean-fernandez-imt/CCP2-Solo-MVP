@@ -8,14 +8,6 @@ const app = express();
 
 app.use(express.json())
 
-// Serve static assets
-app.use(express.static(path.resolve(__dirname, "..", "dist", "CCP2-Solo-MVP")));
-
-// From here it will get redirected to "/manager"
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "..", "dist", "CCP2-Solo-MVP", "index.html"));
-});
-
 // API Basic Interface
 app.get("/api", (req, res) => {
   res.sendFile(path.resolve(__dirname, "api.html"));
@@ -159,16 +151,16 @@ app.delete(`/api/item/:id`, async (req, res) => {
 
 (() => {
   try {
-    app.listen(process.env.PORT || 8080, () => {
+    app.listen(process.env.PORT || 3000, () => {
       if (process.env.PORT) {
-        console.log(`App listening on port ${process.env.PORT}!`);
+        console.log(`API listening on port ${process.env.PORT}!`);
       } else {
-        console.log(`Server running on http://localhost:8080`);
+        console.log(`Server running on http://localhost:3000`);
       }
     }
     );
   } catch (err) {
-    console.error("Error starting app!", err);
+    console.error("Error starting API!", err);
     process.exit(-1);
   }
 })();
