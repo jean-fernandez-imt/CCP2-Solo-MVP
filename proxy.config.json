@@ -2,6 +2,7 @@
   "/api/*":{
     "target":"https://keeping-it-together-api.herokuapp.com",
     "secure": true,
+    "logLevel": "debug",
     "changeOrigin": true
   }
 }
