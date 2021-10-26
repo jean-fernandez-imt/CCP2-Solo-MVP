@@ -7,9 +7,16 @@ const prisma = new PrismaClient()
 
 const app = express();
 
+var corsOptions = {
+  origin: '*',
+  methods: ["GET", "PUT", "POST", "DELETE"],
+  allowedHeaders: ['Content-Type'],
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 // Server Middleware
 app.use(express.json());
-app.use(cors()); 
+app.use(cors(corsOptions)); 
 
 // API Basic Interface
 app.get("/api", (req, res) => {
@@ -45,8 +52,7 @@ app.get("/api/project/:id", async (req, res) => {
 });
 
 // Create a new project
-app.options('/api/project', cors());
-app.post("/api/project", cors(), async (req, res) => {
+app.post("/api/project", async (req, res) => {
   const { name } = req.body;
 
   const result = await prisma.project.create({
@@ -59,8 +65,7 @@ app.post("/api/project", cors(), async (req, res) => {
 });
 
 // Update a project
-app.options('/api/project/:id', cors());
-app.put('/api/project/:id', cors(), async (req, res) => {
+app.put('/api/project/:id', async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
 
@@ -81,7 +86,7 @@ app.put('/api/project/:id', cors(), async (req, res) => {
 });
 
 // Delete a project
-app.delete(`/api/project/:id`, cors(), async (req, res) => {
+app.delete(`/api/project/:id`, async (req, res) => {
   const { id } = req.params;
 
   const result = await prisma.project.delete({
