@@ -35,7 +35,7 @@ export class ProjectService {
 
   /** GET all projects from the server */
   getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>("/api/projects")
+    return this.http.get<Project[]>("https://keeping-it-together-api.herokuapp.com/api/projects")
       .pipe(
         catchError(this.handleError<Project[]>('getProjects', []))
       );
@@ -43,7 +43,7 @@ export class ProjectService {
 
   /** GET project by id. Will 404 if id not found */
   getProject(id: string): Observable<Project> {
-    const url = `/api/project/${id}`;
+    const url = `https://keeping-it-together-api.herokuapp.com/api/project/${id}`;
 
     return this.http.get<Project>(url).pipe(
       catchError(this.handleError<Project>(`getProject id=${id}`))
@@ -52,7 +52,7 @@ export class ProjectService {
 
   /** POST: add a new project to the server */
   createProject(project: Project): Observable<Project> {
-    return this.http.post<Project>("/api/project", project, this.httpOptions)
+    return this.http.post<Project>("https://keeping-it-together-api.herokuapp.com/api/project", project, this.httpOptions)
       .pipe(
         catchError(this.handleError<Project>('createProject'))
       );
@@ -60,14 +60,14 @@ export class ProjectService {
 
   /** PUT: update a project on the server */
   updateProject(project: Project): Observable<any> {
-    return this.http.put(`/api/project/${project.id}`, project, this.httpOptions).pipe(
+    return this.http.put(`https://keeping-it-together-api.herokuapp.com/api/project/${project.id}`, project, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateProject'))
     );
   }
 
   /** DELETE: delete a project from the server */
   deleteProject(id: string): Observable<Project> {
-    const url = `/api/project/${id}`;
+    const url = `https://keeping-it-together-api.herokuapp.com/api/project/${id}`;
   
     return this.http.delete<Project>(url, this.httpOptions).pipe(
       catchError(this.handleError<Project>('deleteProject'))
