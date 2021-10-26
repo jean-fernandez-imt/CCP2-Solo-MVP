@@ -45,7 +45,8 @@ app.get("/api/project/:id", async (req, res) => {
 });
 
 // Create a new project
-app.post("/api/project", async (req, res) => {
+app.options('/api/project', cors());
+app.post("/api/project", cors(), async (req, res) => {
   const { name } = req.body;
 
   const result = await prisma.project.create({
@@ -58,7 +59,8 @@ app.post("/api/project", async (req, res) => {
 });
 
 // Update a project
-app.put('/api/project/:id', async (req, res) => {
+app.options('/api/project/:id', cors());
+app.put('/api/project/:id', cors(), async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
 
@@ -79,7 +81,7 @@ app.put('/api/project/:id', async (req, res) => {
 });
 
 // Delete a project
-app.delete(`/api/project/:id`, async (req, res) => {
+app.delete(`/api/project/:id`, cors(), async (req, res) => {
   const { id } = req.params;
 
   const result = await prisma.project.delete({
