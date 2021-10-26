@@ -2,6 +2,13 @@
   flex: 1 1 auto;
 }
 
+.item-boundary {
+  width: 100%;
+  height: 2000px;
+  max-width: 100%;
+  border: dotted #ccc 2px;
+}
+
 .item-card {
   width: 300px;
   border: solid 1px #ccc;
