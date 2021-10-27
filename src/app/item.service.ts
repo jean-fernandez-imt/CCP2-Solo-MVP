@@ -35,7 +35,7 @@ export class ItemService {
 
   /** POST: add a new project item to the server */
   addItem(item: Item, projectId: string): Observable<Item> {
-    return this.http.post<Item>("api/item", {...item, projectId}, this.httpOptions)
+    return this.http.post<Item>("https://keeping-it-together-api.herokuapp.com/api/item", {...item, projectId}, this.httpOptions)
       .pipe(
         catchError(this.handleError<Item>('addItem'))
       );
@@ -43,14 +43,14 @@ export class ItemService {
 
   /** PUT: update a project item on the server */
   updateItem(item: Item): Observable<any> {
-    return this.http.put(`api/item/${item.id}`, item, this.httpOptions).pipe(
+    return this.http.put(`https://keeping-it-together-api.herokuapp.com/api/item/${item.id}`, item, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateItem'))
     );
   }
 
   /** DELETE: delete a project item from the server */
   deleteItem(id: string): Observable<Item> {
-    const url = `api/item/${id}`;
+    const url = `https://keeping-it-together-api.herokuapp.com/api/item/${id}`;
   
     return this.http.delete<Item>(url, this.httpOptions).pipe(
       catchError(this.handleError<Item>('deleteItem'))
