@@ -9,6 +9,10 @@
     "hack:build": "ng build",
     "hack:watch": "ng build --watch --configuration development",
     "hack:test": "ng test"
+    "hack:api": "nodemon ./API/server.js",
+    "migrate": "npx prisma migrate dev",
+    "seed": "npx prisma db seed",
+    "reset": "npx prisma migrate reset --skip-seed"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -34,6 +38,7 @@
     "@angular/router": "~12.2.0",
     "@prisma/client": "^3.3.0",
     "@types/node": "^12.11.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
