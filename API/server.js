@@ -7,20 +7,13 @@ const prisma = new PrismaClient()
 
 const app = express();
 
-var corsOptions = {
-  origin: '*',
-  methods: ["GET", "PUT", "POST", "DELETE"],
-  allowedHeaders: ['Content-Type'],
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
 // Server Middleware
+app.use(cors()); 
 app.use(express.json());
-app.use(cors(corsOptions)); 
 
 // API Basic Interface
 app.get("/api", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "api.html"));
+  res.status(200).sendFile(path.resolve(__dirname, "api.html"));
 });
 
 /* Projects CRUD Operations */
@@ -32,7 +25,7 @@ app.get("/api/projects", async (req, res) => {
     }
   });
 
-  res.json(result);
+  res.status(200).json(result);
 });
 
 // Get project by Id
@@ -48,7 +41,7 @@ app.get("/api/project/:id", async (req, res) => {
     }
   });
 
-  res.json(result);
+  res.status(200).json(result);
 });
 
 // Create a new project
@@ -61,7 +54,7 @@ app.post("/api/project", async (req, res) => {
     }
   });
 
-  res.json(result);
+  res.status(200).json(result);
 });
 
 // Update a project
@@ -79,9 +72,9 @@ app.put('/api/project/:id', async (req, res) => {
       },
     });
 
-    res.json(updatedProject);
+    res.status(200).json(updatedProject);
   } catch (error) {
-    res.json({ error: `Project with ID ${id} could not be updated.` });
+    res.status(400).json({ error: `Project with ID ${id} could not be updated.` });
   }
 });
 
@@ -95,7 +88,7 @@ app.delete(`/api/project/:id`, async (req, res) => {
     }
   });
 
-  res.json(result);
+  res.status(200).json(result);
 });
 
 /* Items CRUD Operations */
@@ -118,7 +111,7 @@ app.post("/api/item", async (req, res) => {
     }
   });
 
-  res.json(result);
+  res.status(200).json(result);
 });
 
 // Update an item in a project
@@ -140,9 +133,9 @@ app.put('/api/item/:id', async (req, res) => {
       },
     });
 
-    res.json(updatedItem);
+    res.status(200).json(updatedItem);
   } catch (error) {
-    res.json({ error: `Item with ID ${id} could not be updated.` });
+    res.status(400).json({ error: `Item with ID ${id} could not be updated.` });
   }
 });
 
@@ -156,7 +149,7 @@ app.delete(`/api/item/:id`, async (req, res) => {
     }
   });
 
-  res.json(result);
+  res.status(200).json(result);
 });
 
 (() => {
