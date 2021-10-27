@@ -1,27 +1,40 @@
-# CCP2SoloMVP
+# Keeping It Together 🗃️
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
+Ever lost track of the parts you were using when building something? Despair no more! This project manager application will help you keeping record of your components and the investment you have been doing so far. So let's all **Keep It Together!** 
 
-## Development server
+![Keeping It Together](./img/keeping-it-together-screenshot.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project is the first version of my Solo MVP created during my time as a student at Code Chrysalis. It is a full-stack application that uses the following technologies:
 
-## Code scaffolding
+- **Front-End:** Angular 12.2.8 and Angular Material library.
+- **Back-End:** PostgreSQL Database with Prisma and Express server.
+- **Deployment:** Heroku and Firebase.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Building 🔨
 
-## Build
+This repository has a `master` branch where all the code is merged, and from here you can install all the dependencies with:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```jsx
+npm install
+```
 
-## Running unit tests
+However, the front-end and back-end are separated into `app-staging` and `api-staging` branches. Each of those branches has their own set of scripts for development and for deployment.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- **api-staging**
+    - Requires a local PostgreSQL Database.
+    - `npm run hack:api` : Starts the server with `Nodemon` for development.
+    - `npm run migrate` : Creates and applies migrations to the database.
+    - `npm run reset` : Resets the local database.
+- **app-staging:**
+    - `npm run hack:start` : Serves the Angular application in development mode.
+    - `npm run hack:build` : Builds the application for production.
+    - `npm run hack:watch` : Builds the application for development.
 
-## Running end-to-end tests
+## Deployment 📤
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- **Heroku:** Deploys the API. Our Heroku application has the `api-staging` branch linked for automatic deployments. It also has a `Heroku PostgreSQL` database.
+- **Firebase:** Deploys the Angular application. Create a new project on `Firebase` and follow the prompts after running:
+    
+    ```jsx
+    ng deploy
+    ```
