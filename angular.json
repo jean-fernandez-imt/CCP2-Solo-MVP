@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "CCP2-Solo-MVP:build:production",
+            "firebaseProject": "keeping-it-together",
+            "firebaseHostingSite": "keeping-it-together"
+          }
         }
       }
     }

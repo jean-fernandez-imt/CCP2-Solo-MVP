@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "keeping-it-together": {
+      "hosting": {
+        "CCP2-Solo-MVP": [
+          "keeping-it-together"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "keeping-it-together"
+  }
+}
