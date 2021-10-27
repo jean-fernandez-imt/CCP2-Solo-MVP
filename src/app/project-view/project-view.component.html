@@ -45,7 +45,7 @@
         <mat-grid-tile >
           <div class="budget-element">
             <h1>Components Total Price</h1>
-            <p class="price">¥{{itemsTotalPrice}}</p>
+            <p class="price">{{itemsTotalPrice.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' })}}</p>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
