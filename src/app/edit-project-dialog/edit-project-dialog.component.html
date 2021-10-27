@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Edit Project</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Project Name</mat-label>
+    <input matInput [(ngModel)]="data.name" placeholder="Ex. Self-driving Bot">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onBack()">Back</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Edit</button>
+</div>

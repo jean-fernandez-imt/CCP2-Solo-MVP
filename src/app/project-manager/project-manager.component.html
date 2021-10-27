@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <span>Projects</span>
+  <span class="spacer"></span>
+  <button mat-fab color="accent" aria-label="Create Project" (click)="openNewProjectDialog()">
+    <mat-icon>create_new_folder</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div *ngIf="projects.length > 0">
+  <div *ngFor="let project of projects">
+    <mat-card>
+      <mat-card-title>
+        <span class="badge">{{projects.indexOf(project) + 1}}</span> {{project.name}}
+      </mat-card-title>
+      <mat-card-actions align="end">
+        <a mat-raised-button aria-label="Open Project" routerLink="/project/{{project.id}}">
+          <mat-icon>open_with</mat-icon>
+        </a>
+        <button mat-raised-button color="primary" aria-label="Edit Project" (click)="openEditProjectDialog(project)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-raised-button color="warn" aria-label="Delete Project" (click)="deleteProject(project)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

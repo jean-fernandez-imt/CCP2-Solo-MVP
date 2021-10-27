@@ -1,0 +1,56 @@
+<mat-toolbar color="primary">
+  <span>{{project.name}}</span>
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="Add Item" (click)="openNewItemDialog()">
+    <mat-icon>add_box</mat-icon>
+  </button>
+  <button mat-icon-button aria-label="Go Back" (click)="goBack()">
+    <mat-icon>backspace</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div *ngIf="project.items.length > 0">
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Components">
+      <div class="item-boundary">
+        <mat-card *ngFor="let item of project.items" class="item-card" cdkDragBoundary=".item-boundary" cdkDrag>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-content>
+            <ul>
+              <li><b>Manufacturer:</b> {{item.manufacturer}}</li>
+              <li><b>Provider:</b> {{item.provider}}</li>
+              <li><b>Price:</b> ¥{{item.price}}</li>
+              <li><b>Description:</b> {{item.description}}</li>
+            </ul>  
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-raised-button color="primary" aria-label="Edit Item" (click)="openEditItemDialog(item)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-raised-button color="warn" aria-label="Delete Item" (click)="deleteItem(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Budget">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <div class="budget-element">
+            <h1>Number of Components</h1>
+            <p class="count">{{itemsCount}}</p>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile >
+          <div class="budget-element">
+            <h1>Components Total Price</h1>
+            <p class="price">¥{{itemsTotalPrice}}</p>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+

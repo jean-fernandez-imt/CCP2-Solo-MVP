@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>New Item</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Item Name</mat-label>
+    <input matInput [(ngModel)]="item.name" placeholder="Ex. DC Motor">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Manufacturer</mat-label>
+    <input matInput [(ngModel)]="item.manufacturer" placeholder="Ex. Company A">
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Provider</mat-label>
+    <input matInput [(ngModel)]="item.provider" placeholder="Ex. Company B">
+  </mat-form-field>
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" [(ngModel)]="item.price" placeholder="0">
+    <span matPrefix>¥&nbsp;</span>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="item.description" placeholder="Ex. Useful for moving small robots."></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onBack()">Back</button>
+  <button mat-button [mat-dialog-close]="item" cdkFocusInitial>Add</button>
+</div>
