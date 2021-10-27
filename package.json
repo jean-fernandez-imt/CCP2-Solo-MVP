@@ -8,7 +8,7 @@
     "hack:start": "ng serve --proxy-config proxy.config.json",
     "hack:build": "ng build",
     "hack:watch": "ng build --watch --configuration development",
-    "hack:test": "ng test"
+    "hack:test": "ng test",
     "hack:api": "nodemon ./API/server.js",
     "migrate": "npx prisma migrate dev",
     "seed": "npx prisma db seed",
