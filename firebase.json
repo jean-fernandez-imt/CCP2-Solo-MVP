@@ -30,13 +30,6 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ],
-    "redirects": [ 
-      {
-        "source": "/api/:path*",
-        "destination": "https://keeping-it-together-api.herokuapp.com/api/:path",
-        "type": 301
-      }
     ]
   }
 }
